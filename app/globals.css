@@ -1,0 +1,168 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #faf8f3;
+  --color-ink: #16150f;
+  --color-body: #35332b;
+  --color-muted: #6f6d61;
+  --color-line: #e2ded2;
+  --color-accent: #1f47ff;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: color-mix(in oklab, var(--color-accent) 18%, white);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+/* Rendered MDX (posts and case studies) — no typography plugin needed. */
+.mdx {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--color-body);
+}
+
+.mdx > * + * {
+  margin-top: 1.15em;
+}
+
+.mdx h2 {
+  margin-top: 2.4em;
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--color-ink);
+}
+
+.mdx h3 {
+  margin-top: 1.9em;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.mdx ul,
+.mdx ol {
+  padding-left: 1.35rem;
+}
+
+.mdx ul {
+  list-style: disc;
+}
+
+.mdx ol {
+  list-style: decimal;
+}
+
+.mdx li + li {
+  margin-top: 0.45em;
+}
+
+.mdx li > ul,
+.mdx li > ol {
+  margin-top: 0.45em;
+}
+
+.mdx a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.mdx strong {
+  color: var(--color-ink);
+  font-weight: 600;
+}
+
+.mdx blockquote {
+  border-left: 2px solid var(--color-accent);
+  padding-left: 1rem;
+  color: var(--color-muted);
+}
+
+.mdx blockquote p + p {
+  margin-top: 0.6em;
+}
+
+.mdx code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background-color: #f0ece2;
+  padding: 0.15em 0.4em;
+  border-radius: 0.25rem;
+}
+
+.mdx pre {
+  overflow-x: auto;
+  border-radius: 0.6rem;
+  background-color: var(--color-ink);
+  padding: 1.1rem 1.2rem;
+  font-size: 0.85rem;
+  line-height: 1.65;
+}
+
+.mdx pre code {
+  background-color: transparent;
+  padding: 0;
+  color: #f5f2ea;
+  font-size: inherit;
+}
+
+.mdx hr {
+  border-color: var(--color-line);
+}
+
+.mdx table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.925rem;
+}
+
+.mdx th,
+.mdx td {
+  border-bottom: 1px solid var(--color-line);
+  padding: 0.5rem 0.6rem;
+  text-align: left;
+}
+
+.mdx th {
+  color: var(--color-ink);
+  font-weight: 600;
+}
+
+.mdx img {
+  border-radius: 0.6rem;
+}

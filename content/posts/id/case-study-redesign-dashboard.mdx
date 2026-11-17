@@ -1,0 +1,40 @@
+---
+title: "Case study: membangun ulang dashboard di sekitar satu pertanyaan"
+summary: "Bagaimana dashboard padat data berubah dari empat klik menjadi satu insight, dan apa yang akan saya lakukan berbeda."
+date: "2026-10-12"
+tags: ["Case study", "Produk"]
+---
+
+> Konten contoh. Tulisan ini menunjukkan struktur sebuah case study: masalah, peran, batasan, keputusan, hasil. Ganti dengan case study kamu sendiri — pertahankan heading-nya, sisanya ditangani situs ini.
+
+## Masalahnya
+
+Tim operasional membuka dashboard itu setiap pagi, tapi jawaban yang mereka cari — *apa yang berubah sejak kemarin?* — butuh empat klik dan pengurangan manual. Halamannya lengkap secara teknis dan tidak berguna secara praktis.
+
+## Peran saya
+
+Frontend developer tunggal. Saya memegang hierarki informasi, pekerjaan komponen, dan batas performa. Desainer mereview layout akhir; lead operasional mereview definisi metrik.
+
+## Batasan
+
+- 40.000 baris di tabel terbesar, di laptop kelas menengah.
+- Tidak boleh menambah library chart baru — bundle sudah terlalu besar.
+- Dua minggu, sambil mengerjakan pekerjaan produk lain.
+
+## Yang saya ubah
+
+1. **Satu pertanyaan per layar.** Tampilan utama menjawab "apa yang berubah minggu ini" dengan kolom selisih, bukan chart yang harus dibaca dulu.
+2. **Filter lewat keyboard.** Semua filter bisa dicapai dengan <kbd>Tab</kbd>, dan URL selalu mencerminkan tampilan saat ini, jadi rekan kerja bisa membagikan persis apa yang mereka lihat.
+3. **Chart yang tetap jujur.** State kosong dan loading memakai kerangka yang sama dengan data termuat, jadi layout tidak melompat dan "tidak ada data" tidak terlihat seperti "nol".
+
+## Hasil
+
+- Waktu ke insight pertama: **4 klik → 1**.
+- Tampilan utama tetap di bawah **120 kB JavaScript**.
+- Pertanyaan "X-nya di mana ya?" berhenti masuk.
+
+## Yang akan saya lakukan berbeda
+
+Saya akan memasang instrumen di dashboard lama selama dua hari sebelum membangun ulang, bukan hanya mengandalkan wawancara. Wawancara benar soal masalah besar dan salah soal masalah kedua, dan kesalahan itu memakan tiga hari.
+
+Kalau ingin membahas pekerjaan ini, [email saya](mailto:you@example.com).

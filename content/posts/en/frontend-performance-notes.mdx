@@ -1,0 +1,40 @@
+---
+title: "Three frontend fixes that actually moved our numbers"
+summary: "Bundle size, font loading and image dimensions: the boring changes that made a measurable difference."
+date: "2026-09-03"
+tags: ["Performance"]
+---
+
+> Sample content. Replace with your own notes — a short post is fine; three real observations beat one long generic one.
+
+Most performance advice is a list of things you should care about. This is a list of three things that changed a number I could point at.
+
+## 1. Stop shipping a second UI library
+
+The app imported two component libraries. Together they were **210 kB** of the initial bundle, and roughly a third of it was never rendered.
+
+```bash
+# before / after, first load JS
+210 kB → 74 kB
+```
+
+The fix was unglamorous: pick one, rewrite the twelve imports from the other. Two days of work, one permanent improvement.
+
+## 2. Load fonts like you mean it
+
+`display: swap` and self-hosting removed the invisible-text window on cheap Android phones. The bigger win was cutting the weights we actually used from five to two.
+
+| Before | After |
+| --- | --- |
+| 5 weights, Google CDN | 2 weights, self-hosted |
+| ~340 ms to first paint | ~90 ms to first paint |
+
+## 3. Always set width and height
+
+Every image without dimensions is a layout shift waiting to happen. Adding explicit sizes and `loading="lazy"` below the fold dropped cumulative layout shift from 0.21 to 0.02.
+
+## The pattern
+
+None of these required a rewrite. All three required measuring first, so I knew which one was worth a week and which was worth an afternoon.
+
+[Tell me what I got wrong](mailto:you@example.com) — I would rather be corrected than stay fast on paper.

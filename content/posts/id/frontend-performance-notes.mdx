@@ -1,0 +1,40 @@
+---
+title: "Tiga perbaikan frontend yang benar-benar mengubah angka"
+summary: "Ukuran bundle, pemuatan font, dan dimensi gambar: perubahan membosankan yang hasilnya bisa diukur."
+date: "2026-09-03"
+tags: ["Performa"]
+---
+
+> Konten contoh. Ganti dengan catatan kamu sendiri — tulisan pendek tidak masalah; tiga pengamatan nyata lebih baik daripada satu tulisan panjang yang generik.
+
+Sebagian besar saran performa adalah daftar hal yang seharusnya kamu pedulikan. Ini daftar tiga hal yang mengubah angka yang bisa saya tunjukkan.
+
+## 1. Berhenti mengirim dua library UI
+
+Aplikasi memakai dua library komponen sekaligus. Bersama-sama keduanya **210 kB** di bundle awal, dan sekitar sepertiganya tidak pernah dirender.
+
+```bash
+# sebelum / sesudah, JS first load
+210 kB → 74 kB
+```
+
+Perbaikannya tidak menarik: pilih satu, tulis ulang dua belas import dari yang lain. Dua hari kerja, satu perbaikan permanen.
+
+## 2. Muat font dengan benar
+
+`display: swap` dan self-hosting menghilangkan jendela teks tak terlihat di ponsel Android kelas bawah. Kemenangan yang lebih besar adalah memangkas weight yang benar-benar dipakai dari lima menjadi dua.
+
+| Sebelum | Sesudah |
+| --- | --- |
+| 5 weight, CDN Google | 2 weight, self-hosted |
+| ~340 ms ke paint pertama | ~90 ms ke paint pertama |
+
+## 3. Selalu set width dan height
+
+Setiap gambar tanpa dimensi adalah layout shift yang menunggu terjadi. Menambahkan ukuran eksplisit dan `loading="lazy"` di bawah lipatan menurunkan cumulative layout shift dari 0,21 ke 0,02.
+
+## Polanya
+
+Tidak satu pun dari ini butuh rewrite. Ketiganya butuh pengukuran lebih dulu, supaya saya tahu mana yang layak seminggu dan mana yang cukup satu sore.
+
+[Koreksi saya kalau salah](mailto:you@example.com) — lebih baik dikoreksi daripada terlihat cepat di atas kertas.

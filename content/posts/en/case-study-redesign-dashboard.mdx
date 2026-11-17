@@ -1,0 +1,40 @@
+---
+title: "Case study: rebuilding a dashboard around one question"
+summary: "How a data-heavy dashboard went from four clicks to one insight, and what I would do differently next time."
+date: "2026-10-12"
+tags: ["Case study", "Product"]
+---
+
+> Sample content. This post shows the structure of a case study: problem, role, constraints, decisions, result. Replace it with one of your own — keep the headings and the site will handle the rest.
+
+## The problem
+
+The operations team checked the dashboard every morning, but the answer they wanted — *what changed since yesterday?* — took four clicks and a mental subtraction. The page was technically complete and practically useless.
+
+## My role
+
+Solo frontend developer. I owned the information hierarchy, the component work and the performance budget. A designer reviewed the final layout; the ops lead reviewed the metric definitions.
+
+## Constraints
+
+- 40,000 rows in the largest table, on mid-range laptops.
+- No new charting library — the bundle was already too large.
+- Two weeks, alongside regular product work.
+
+## What I changed
+
+1. **One question per screen.** The landing view answers "what changed this week" with a delta column instead of a chart the user had to read.
+2. **Filters with the keyboard.** Every filter is reachable with <kbd>Tab</kbd>, and the URL always reflects the current view, so a teammate can share exactly what they see.
+3. **Charts that stay honest.** Empty and loading states use the same frame as loaded data, so the layout never jumps and "no data" never looks like "zero".
+
+## Result
+
+- Time to first insight: **4 clicks → 1**.
+- Main view stays under **120 kB of JavaScript**.
+- Support questions of the form "where do I find X?" stopped.
+
+## What I would do differently
+
+I would instrument the old dashboard for two days before rebuilding it, instead of relying on interviews alone. The interviews were right about the big problem and wrong about the second one, and that second one cost me three days.
+
+If you want to talk about this work, [email me](mailto:you@example.com).
